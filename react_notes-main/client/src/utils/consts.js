@@ -1,0 +1,5 @@
+export const NOTES_ROUTE = 'note'
+export const SHOP_ROUTE = 'shop'
+export const ADMIN_ROUTE = 'admin'
+export const LOGIN_ROUTE = 'login'
+export const REGISTRATION_ROUTE = 'registration'
