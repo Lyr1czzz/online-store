@@ -3,7 +3,7 @@ import ReactDOM from 'react-dom/client';
 import App from './App';
 import {BrowserRouter} from "react-router-dom";
 import UserStore from "./store/UserStore";
-import NotesStore from "./store/NotesStore";
+import NotesStore from "./store/PetStore";
 
 
 export const Context = createContext(null)

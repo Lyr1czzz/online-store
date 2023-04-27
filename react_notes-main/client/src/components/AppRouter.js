@@ -2,7 +2,7 @@ import React from 'react';
 import {Route, Routes} from 'react-router-dom'
 import {authRoutes, publicRoutes} from "../routes";
 import TagsPage from "../page/TagsPage";
-import Layout from "./Layout";
+import NavBar from "./NavBar";
 import {RequireAuth} from "../hoc/RequireAuth";
 import Auth from "../page/Auth";
 
@@ -10,7 +10,7 @@ import Auth from "../page/Auth";
 const AppRouter = () => {
     return (
         <Routes>
-            <Route path="/" element={<Layout/>}>
+            <Route path="/" element={<NavBar/>}>
                 <Route index element={<RequireAuth><TagsPage/></RequireAuth>}/>
                 {authRoutes.map(({path, Component}) =>
                     <Route key={path} path={path} element={<RequireAuth>{Component}</RequireAuth>}/>

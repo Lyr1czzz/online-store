@@ -3,7 +3,6 @@ import {observer} from "mobx-react-lite";
 import {Context} from "../index";
 import {check} from "../http/userAPI";
 import {Spinner} from "react-bootstrap";
-import {createFiles, createNote} from "../http/noteAPI";
 
 const FileUpload = observer(({children}) => {
 
@@ -16,6 +15,7 @@ const FileUpload = observer(({children}) => {
             user.setIsAuth(true)
         })
         .finally(() => setLoading(false))
+        // eslint-disable-next-line
     }, []);
 
     if (loading) {
@@ -43,15 +43,12 @@ const FileUpload = observer(({children}) => {
             for (let i = 0; i < files.length; i++) {
                 formData.append("file_data", files[i]);
             }
-            const note = await createNote({userId: user.user.id, description: null})
-            formData.append('noteId', note.id)
             // Созданная заметка
             // console.log(note)
 
             if (files.length) {
                 // Созданные файлы, если переданы
-                const file = await createFiles(formData)
-                console.log(file)
+
             }
         } catch (e) {
             console.log(e.message)
