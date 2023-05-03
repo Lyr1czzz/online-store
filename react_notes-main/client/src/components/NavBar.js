@@ -2,7 +2,7 @@ import React, {useContext} from 'react';
 import {observer} from "mobx-react-lite";
 import {Context} from "../index";
 import {NavLink, Outlet, useNavigate} from "react-router-dom";
-import {BASKET_ROUTE, LOGIN_ROUTE, SHOP_ROUTE} from "../utils/consts";
+import {BASKET_ROUTE, INVENTORY_ROUTE, LOGIN_ROUTE, SHOP_ROUTE} from "../utils/consts";
 import {Button, Container, Nav, Navbar} from "react-bootstrap";
 
 const NavBar = observer(() => {
@@ -19,6 +19,10 @@ const NavBar = observer(() => {
         navigate('/' + BASKET_ROUTE)
     }
 
+    const openInventory = () => {
+        navigate('/' + INVENTORY_ROUTE)
+    }
+
         return (
             <>
                 <Navbar bg="dark" expand="lg">
@@ -31,6 +35,7 @@ const NavBar = observer(() => {
                         >
                             {user.isAuth ?
                                 <Nav className="ml-auto" style={{color: 'white'}}>
+                                    <Button className="ms-3" onClick={openInventory}> Инвентарь </Button>
                                     <Button className="ms-3" onClick={openBasket}> Корзина </Button>
                                     <Button className="ms-3" onClick={logOut}>Выйти</Button>
                                 </Nav>

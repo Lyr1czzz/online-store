@@ -1,14 +1,14 @@
 import React, {useContext, useEffect} from 'react';
 import {Col, Container, Row} from "react-bootstrap";
-import {observer} from "mobx-react-lite";
-import {Context} from "../index";
-import {fetchPets, fetchRarities, fetchTypes} from "../http/petAPI";
 import TypeBar from "../components/TypeBar";
 import RarityBar from "../components/RarityBar";
-import PetList from "../components/PetList";
 import Pages from "../components/Pages";
+import {Context} from "../index";
+import {fetchPets, fetchRarities, fetchTypes} from "../http/petAPI";
+import {observer} from "mobx-react-lite";
+import InventoryList from "../components/InventoryList";
 
-const Shop = observer(() => {
+const Inventory = observer(() => {
     const {pet} = useContext(Context)
 
     useEffect(() => {
@@ -35,7 +35,7 @@ const Shop = observer(() => {
                 </Col>
                 <Col md={9}>
                     <RarityBar/>
-                    <PetList/>
+                    <InventoryList/>
                     <Pages/>
                 </Col>
             </Row>
@@ -43,4 +43,4 @@ const Shop = observer(() => {
     );
 });
 
-export default Shop;
+export default Inventory;

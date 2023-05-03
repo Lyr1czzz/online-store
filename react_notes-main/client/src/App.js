@@ -1,30 +1,15 @@
 import AppRouter from "./components/AppRouter";
-import React, {useEffect, useState} from "react";
-import './App.css'
-import FileUpload from "./components/FileUpload";
-import {check} from "./http/userAPI";
-import {Spinner} from "react-bootstrap";
+import React from "react";
 import {observer} from "mobx-react-lite";
+import NavBar from "./components/NavBar";
+import {BrowserRouter} from "react-router-dom";
 
 const App = observer(() => {
-    // eslint-disable-next-line
-    const [loading, setLoading] = useState(true)
-
-    useEffect(() => {
-        check().then(user => {
-            user.setUser(true)
-            user.setIsAuth(true)
-        }).finally(() => setLoading(false))
-    }, [])
-
-    if (loading) {
-        return <Spinner animation={"grow"}/>
-    }
-
     return (
-        <FileUpload>
+        <BrowserRouter>
+            <NavBar/>
             <AppRouter/>
-        </FileUpload>
+        </BrowserRouter>
     )
 });
 

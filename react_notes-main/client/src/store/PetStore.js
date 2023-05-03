@@ -2,18 +2,13 @@ import {makeAutoObservable} from "mobx";
 
 export default class PetStore {
     constructor() {
-        this._types = [
-            {id: 1, name: 'Golden'}
-        ]
-        this._rarities = [
-            {id: 1, name: 'Basic'}
-        ]
-        this._pets = [
-            {id: 1, name: 'Cat'}
-        ]
+        this._types = []
+        this._rarities = []
+        this._pets = []
         this._selectedType = {}
         this._selectedRarity = {}
         this._page = 1
+        this._totalCount = 0
         this._limit = 3
         makeAutoObservable(this)
     }
@@ -39,6 +34,9 @@ export default class PetStore {
     setPage(page) {
         this._page = page
     }
+    setTotalCount(count) {
+        this._totalCount = count
+    }
 
     get types() {
         return this._types
@@ -54,6 +52,9 @@ export default class PetStore {
     }
     get selectedRarity() {
         return this._selectedRarity
+    }
+    get totalCount() {
+        return this._totalCount
     }
     get page() {
         return this._page

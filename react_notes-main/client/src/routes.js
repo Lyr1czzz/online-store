@@ -1,12 +1,18 @@
-import {BASKET_ROUTE, LOGIN_ROUTE, REGISTRATION_ROUTE, SHOP_ROUTE} from "./utils/consts";
+import {BASKET_ROUTE, INVENTORY_ROUTE, LOGIN_ROUTE, REGISTRATION_ROUTE, SHOP_ROUTE} from "./utils/consts";
 import Shop from "./page/Shop";
 import Auth from "./page/Auth";
 import Basket from "./page/Basket";
+import React from "react";
+import Inventory from "./page/Inventory";
 
 export const authRoutes = [
     {
         path: BASKET_ROUTE,
         Component: <Basket/>
+    },
+    {
+        path: INVENTORY_ROUTE,
+        Component: <Inventory/>
     },
 ]
 

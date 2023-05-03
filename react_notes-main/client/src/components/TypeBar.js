@@ -1,15 +1,22 @@
-import React from 'react';
+import React, {useContext} from 'react';
 import {observer} from "mobx-react-lite";
 import ListGroup from "react-bootstrap/ListGroup";
+import {Context} from "../index";
 
 const TypeBar = observer(() => {
+    const {pet} = useContext(Context)
     return (
         <ListGroup>
-            <ListGroup.Item>Cras justo odio</ListGroup.Item>
-            <ListGroup.Item>Dapibus ac facilisis in</ListGroup.Item>
-            <ListGroup.Item>Morbi leo risus</ListGroup.Item>
-            <ListGroup.Item>Porta ac consectetur ac</ListGroup.Item>
-            <ListGroup.Item>Vestibulum at eros</ListGroup.Item>
+            {pet.types.map(type =>
+                <ListGroup.Item
+                    active={type.id === pet.selectedType.id}
+                    onClick={() => pet.setSelectedType(type)}
+                    style={{cursor: 'pointer'}}
+                    key={type.id}
+                >
+                    {type.name}
+                </ListGroup.Item>
+            )}
         </ListGroup>
     );
 });

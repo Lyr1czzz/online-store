@@ -5,7 +5,7 @@ import {Pagination} from "react-bootstrap";
 
 const Pages = observer(() => {
     const {pet} = useContext(Context)
-    const pageCount = Math.ceil(pet.limit)
+    const pageCount = Math.ceil(pet.totalCount / pet.limit)
     const pages = []
 
     for (let i = 0; i < pageCount; i++) {

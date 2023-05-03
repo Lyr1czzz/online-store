@@ -1,27 +1,16 @@
 const uuid = require('uuid')
-const path = require('path');
-const {Pet, PetInfo} = require('../models/models')
+const {Pet} = require('../models/models')
 const ApiError = require('../error/ApiError');
+const path = require('path');
 
 class PetController {
     async create(req, res, next) {
         try {
-            let {name, price, rarityId, typeId, info} = req.body
+            let {name, price, rarityId, typeId} = req.body
             const {img} = req.files
             let fileName = uuid.v4() + ".jpg"
             img.mv(path.resolve(__dirname, '..', 'static', fileName))
             const pet = await Pet.create({name, price, rarityId, typeId, img: fileName});
-
-            if (info) {
-                info = JSON.parse(info)
-                info.forEach(i =>
-                    PetInfo.create({
-                        title: i.title,
-                        description: i.description,
-                        petInfo: pet.id
-                    })
-                )
-            }
 
             return res.json(pet)
         } catch (e) {
@@ -49,17 +38,6 @@ class PetController {
             pets = await Pet.findAndCountAll({where:{typeId, rarityId}, limit, offset})
         }
         return res.json(pets)
-    }
-
-    async getOne(req, res) {
-        const {id} = req.params
-        const pet = await Pet.findOne(
-            {
-                where: {id},
-                include: [{model: PetInfo, as: 'info'}]
-            },
-        )
-        return res.json(pet)
     }
 }
 

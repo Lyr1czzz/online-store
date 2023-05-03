@@ -37,42 +37,6 @@ const TypeRarity = sequelize.define('type_rarity', {
     id: {type: DataTypes.INTEGER, primaryKey: true, autoIncrement: true},
 })
 
-
-
-//
-const Note   = sequelize.define('note', {
-    id: {type: DataTypes.INTEGER, primaryKey: true, autoIncrement: true},
-    description: {type: DataTypes.STRING, defaultValue: null}
-})
-
-const File = sequelize.define('file', {
-    id: {type: DataTypes.INTEGER, primaryKey: true, autoIncrement: true},
-    filepath: {type: DataTypes.STRING}
-})
-
-const Tag = sequelize.define('tag', {
-    id: {type: DataTypes.INTEGER, primaryKey: true, autoIncrement: true},
-    name: {type: DataTypes.STRING}
-})
-
-const FilterNote = sequelize.define('filterNote', {
-    id: {type: DataTypes.INTEGER, primaryKey: true, autoIncrement: true},
-})
-//
-//
-User.hasMany(Note)
-Note.belongsTo(User)
-
-Note.hasMany(File)
-File.belongsTo(Note)
-
-User.hasMany(Tag)
-Tag.belongsTo(User)
-
-Tag.belongsToMany(Note, {through: FilterNote})
-Note.belongsToMany(Tag, {through: FilterNote})
-
-//
 User.hasOne(Basket)
 Basket.belongsTo(User)
 
@@ -93,10 +57,6 @@ Rarity.belongsToMany(Type, {through: TypeRarity })
 
 module.exports = {
     User,
-    Note,
-    Tag,
-    File,
-    FilterNote,
     Basket,
     BasketPet,
     Pet,

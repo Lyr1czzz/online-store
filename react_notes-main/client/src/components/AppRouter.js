@@ -1,19 +1,17 @@
 import React from 'react';
 import {Route, Routes} from 'react-router-dom'
 import {authRoutes, publicRoutes} from "../routes";
-import TagsPage from "../page/TagsPage";
-import NavBar from "./NavBar";
-import {RequireAuth} from "../hoc/RequireAuth";
+import Shop from "../page/Shop";
 import Auth from "../page/Auth";
 
 
 const AppRouter = () => {
     return (
         <Routes>
-            <Route path="/" element={<NavBar/>}>
-                <Route index element={<RequireAuth><TagsPage/></RequireAuth>}/>
+            <Route>
+                <Route index element={<Shop/>}/>
                 {authRoutes.map(({path, Component}) =>
-                    <Route key={path} path={path} element={<RequireAuth>{Component}</RequireAuth>}/>
+                    <Route key={path} path={path} element={Component}/>
                 )}
                 {publicRoutes.map(({path, Component}) =>
                     <Route key={path} path={path} element={Component}/>
