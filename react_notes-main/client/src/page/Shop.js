@@ -18,13 +18,15 @@ const Shop = observer(() => {
             pet.setPets(data.rows)
             pet.setTotalCount(data.count)
         })
+        // eslint-disable-next-line
     }, [])
 
     useEffect(() => {
-        fetchPets(pet.selectedType.id, pet.selectedRarity.id, pet.page, 2).then(data => {
+        fetchPets(pet.selectedType.id, pet.selectedRarity.id, pet.page, 4).then(data => {
             pet.setPets(data.rows)
             pet.setTotalCount(data.count)
         })
+        // eslint-disable-next-line
     }, [pet.page, pet.selectedType, pet.selectedRarity,])
 
     return (
