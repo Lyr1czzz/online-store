@@ -18,6 +18,13 @@ const BasketPet = sequelize.define('basket_pet', {
 
 const OrderList = sequelize.define('order_list', {
     id: {type: DataTypes.INTEGER, primaryKey: true, autoIncrement: true},
+    orderType: {type: DataTypes.BOOLEAN},
+    userName: {type: DataTypes.STRING},
+})
+
+const InventoryList = sequelize.define('inventory_list', {
+    id: {type: DataTypes.INTEGER, primaryKey: true, autoIncrement: true},
+    botName: {type: DataTypes.STRING, unique: false},
 })
 
 const Pet = sequelize.define('pet', {
@@ -50,6 +57,12 @@ BasketPet.belongsTo(Basket)
 Basket.hasMany(OrderList)
 OrderList.belongsTo(Basket)
 
+User.hasOne(InventoryList)
+InventoryList.belongsTo(User)
+
+Pet.hasOne(InventoryList)
+InventoryList.belongsTo(Pet)
+
 Type.hasMany(Pet)
 Pet.belongsTo(Type)
 
@@ -67,6 +80,7 @@ module.exports = {
     Basket,
     BasketPet,
     OrderList,
+    InventoryList,
     Pet,
     Type,
     Rarity,

@@ -1,14 +1,19 @@
-import React, {useContext} from 'react';
-import {Context} from "../index";
-import {Row} from "react-bootstrap";
+import React from 'react';
+import {Button, Row} from "react-bootstrap";
 import InventoryItem from "./InventoryItem";
+import Modal from "./Modal";
 
 const InventoryList = () => {
-    const {pet} = useContext(Context)
-
+    const [modalShow, setModalShow] = React.useState(false);
     return (
         <Row className="d-flex">
-            <InventoryItem/>
+            <Button variant="primary" onClick={() => setModalShow(true)}>
+                Пополнить петов
+            </Button>
+            <Modal
+                show={modalShow}
+                onHide={() => setModalShow(false)}
+            />
         </Row>
     );
 };

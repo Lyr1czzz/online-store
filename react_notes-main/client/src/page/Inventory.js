@@ -2,11 +2,11 @@ import React, {useContext, useEffect} from 'react';
 import {Col, Container, Row} from "react-bootstrap";
 import TypeBar from "../components/TypeBar";
 import RarityBar from "../components/RarityBar";
-import Pages from "../components/Pages";
 import {Context} from "../index";
 import {fetchPets, fetchRarities, fetchTypes} from "../http/petAPI";
 import {observer} from "mobx-react-lite";
 import InventoryList from "../components/InventoryList";
+import Pages from "../components/Pages";
 
 const Inventory = observer(() => {
     const {pet} = useContext(Context)

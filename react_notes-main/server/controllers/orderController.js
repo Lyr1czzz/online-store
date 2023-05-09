@@ -2,10 +2,22 @@ const {OrderList} = require('../models/models')
 const ApiError = require('../error/ApiError');
 
 class OrderController {
-    async create(req, res, next) {
+    async createGive(req, res, next) {
         try {
-            let {basketId} = req.body
-            const order = await OrderList.create({basketId});
+            const {basketId, userName, orderType = false} = req.body
+            const order = await OrderList.create({userName, orderType, basketId});
+
+            return res.json(order)
+        } catch (e) {
+            next(ApiError.badRequest(e.message))
+        }
+
+    }
+
+    async createTake(req, res, next) {
+        try {
+            const {userName, orderType = true} = req.body
+            const order = await OrderList.create({userName, orderType});
 
             return res.json(order)
         } catch (e) {
